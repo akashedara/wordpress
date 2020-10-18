@@ -1,8 +1,8 @@
 provider "aws" {
     region ="ap-south-1"
     profile = "profile3"
-  
 }
+
 resource "aws_vpc" "main" {
   cidr_block       = "192.168.0.0/16"
   instance_tenancy = "default"
@@ -69,7 +69,7 @@ resource "aws_instance" "wordpress_inst" {
     instance_type = "t2.micro"
     associate_public_ip_address = true
     subnet_id = "${aws_subnet.sub1.id}"
-    key_name = "key2"
+    key_name = "mykey97"
     vpc_security_group_ids = [ "${aws_security_group.sg.id}" ]
     tags = {
         Name = "Wordpress_LinuxWorld"
@@ -132,7 +132,7 @@ resource "aws_instance" "mysql_inst" {
     instance_type = "t2.micro"
     associate_public_ip_address = true
     subnet_id = "${aws_subnet.sub2.id}"
-    key_name = "key2"
+    key_name = "mykey97"
     vpc_security_group_ids = [ "${aws_security_group.mysqlsg.id}", "${aws_security_group.mysqlbatsonsg.id}" ]
     depends_on = [
         aws_security_group.mysqlbatsonsg
@@ -182,7 +182,7 @@ resource "aws_instance" "batson_inst" {
     instance_type = "t2.micro"
     associate_public_ip_address = true
     subnet_id = "${aws_subnet.sub1.id}"
-    key_name = "key2"
+    key_name = "mykey97"
     vpc_security_group_ids = [ "${aws_security_group.batsonsg.id}" ]
     tags = {
         Name = "Batson_LinuxWorld"
@@ -216,11 +216,9 @@ resource "aws_security_group" "mysqlbatsonsg" {
   }
 }
 
-
-
 #NAT Gateway
 resource "aws_nat_gateway" "gw" {
-  allocation_id = "eipalloc-000471054d8daae0c"
+  allocation_id = "eipalloc-02300663e4845b791"
   subnet_id     = "${aws_subnet.sub1.id}"
 
   tags = {
