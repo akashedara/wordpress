@@ -69,7 +69,7 @@ resource "aws_instance" "wordpress_inst" {
     instance_type = "t2.micro"
     associate_public_ip_address = true
     subnet_id = "${aws_subnet.sub1.id}"
-    key_name = "mykey97"
+    key_name = "myNewkey2"
     vpc_security_group_ids = [ "${aws_security_group.sg.id}" ]
     tags = {
         Name = "Wordpress_LinuxWorld"
@@ -132,7 +132,7 @@ resource "aws_instance" "mysql_inst" {
     instance_type = "t2.micro"
     associate_public_ip_address = true
     subnet_id = "${aws_subnet.sub2.id}"
-    key_name = "mykey97"
+    key_name = "myNewkey2"
     vpc_security_group_ids = [ "${aws_security_group.mysqlsg.id}", "${aws_security_group.mysqlbatsonsg.id}" ]
     depends_on = [
         aws_security_group.mysqlbatsonsg
@@ -182,7 +182,7 @@ resource "aws_instance" "batson_inst" {
     instance_type = "t2.micro"
     associate_public_ip_address = true
     subnet_id = "${aws_subnet.sub1.id}"
-    key_name = "mykey97"
+    key_name = "myNewkey2"
     vpc_security_group_ids = [ "${aws_security_group.batsonsg.id}" ]
     tags = {
         Name = "Batson_LinuxWorld"
@@ -218,7 +218,7 @@ resource "aws_security_group" "mysqlbatsonsg" {
 
 #NAT Gateway
 resource "aws_nat_gateway" "gw" {
-  allocation_id = "eipalloc-02300663e4845b791"
+  allocation_id = "eipalloc-04d08bd8eb697f41c"
   subnet_id     = "${aws_subnet.sub1.id}"
 
   tags = {
